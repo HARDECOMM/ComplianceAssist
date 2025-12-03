@@ -1,9 +1,8 @@
-# config.py
 import logging
 from typing import List
 from pydantic import Field, validator
 from pydantic_settings import BaseSettings
-from dotenv import load_dotenv   # <-- add this
+from dotenv import load_dotenv
 import os
 
 # Load variables from .env into os.environ
@@ -11,6 +10,8 @@ load_dotenv()
 
 class Settings(BaseSettings):
     google_api_key: str = Field(..., env="GOOGLE_API_KEY")
+    google_genai_use_vertexai: int = Field(0, env="GOOGLE_GENAI_USE_VERTEXAI")  # NEW FIELD
+
     app_name: str = Field("complianceAssist")
     user_id: str = Field("demo_user")
     session_id: str = Field("default_session")
